@@ -21,5 +21,7 @@ urlpatterns = [
     path("polls/", include("polls.urls")),
     path("admin/", admin.site.urls),
     path('', include('polls.urls')),  # Root URL now points to polls
+    path('api/', include('polls.urls')),
+    
 
 ]
