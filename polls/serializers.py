@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import SimulationReport
+from .models import SimulationResult
 
-class SimulationReportSerializer(serializers.ModelSerializer):
+class SimulationResultSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SimulationReport
+        model = SimulationResult
         fields = '__all__'

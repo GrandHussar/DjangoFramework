@@ -1,83 +1,228 @@
 /* Steins;Gate Green */
 .text-steins-green {
-    color: #00FF41; /* Matrix green */
-  }
-  
-  .bg-steins-green {
-    background-color: #00FF41; /* Matrix green */
-  }
-  
-  /* Button hover effects */
-  .btn-hover-green:hover {
-    box-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41;
-  }
-  
-  .btn-hover-blue:hover {
-    box-shadow: 0 0 10px #007BFF, 0 0 20px #007BFF;
-  }
-  
-  /* Loading screen styling */
-  .loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000; /* Dark background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .loading-text {
-    font-size: 2rem;
-    color: #00FF41; /* Matrix green */
-    font-family: 'Courier New', Courier, monospace;
-    animation: flicker 1.5s infinite;
-  }
-  
-  /* Fade animations for content transition */
-  .fade-in {
-    opacity: 0;
-    animation: fadeIn 0.6s ease-in-out forwards;
-  }
-  
-  .fade-out {
-    opacity: 1;
-    animation: fadeOut 0.6s ease-in-out forwards;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  
-  /* Modal border */
-  .modal-content {
-    border: 2px solid #00FF41; /* Steins;Gate green */
-  }
-  
-  /* Flickering effect for loading */
-  @keyframes flicker {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-  }
-  
+  color: #00FF41; /* Matrix green */
+}
+
+.bg-steins-green {
+  background-color: #00FF41; /* Matrix green */
+}
+
+/* Button hover effects */
+.btn-hover-green:hover, .steins-btn:hover {
+  box-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41;
+  transform: scale(1.05); /* Small hover effect */
+}
+
+.btn-hover-blue:hover {
+  box-shadow: 0 0 10px #007BFF, 0 0 20px #007BFF;
+  transform: scale(1.05);
+}
+
+/* Consistent Button Styles */
+button {
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #00FF41; /* Green glow focus */
+}
+
+.btn-steins-green {
+  background-color: #32CD32; /* Bright green */
+  color: white;
+  border: 2px solid #2E8B57;
+  transition: background-color 0.3s ease;
+}
+
+.btn-steins-blue {
+  background-color: #008CFF; /* Bright blue */
+  color: white;
+  border: 2px solid #007BFF;
+  transition: background-color 0.3s ease;
+}
+
+.btn-steins-green:hover, .btn-steins-blue:hover {
+  box-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41; /* Glow effect */
+}
+
+/* Adjust View Data Points & Download XML Button */
+.table-btn {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.table-btn-blue {
+  background-color: #0056b3; /* Dark blue */
+  color: white;
+}
+
+.table-btn-blue:hover {
+  background-color: #007bff;
+  transform: scale(1.05); /* Slight scale on hover */
+}
+
+.table-btn-green {
+  background-color: #006400; /* Dark green */
+  color: white;
+}
+
+.table-btn-green:hover {
+  background-color: #32CD32;
+  transform: scale(1.05);
+}
+
+/* Loading screen styling */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000; /* Dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-text {
+  font-size: 2rem;
+  color: #00FF41; /* Matrix green */
+  font-family: 'Courier New', Courier, monospace;
+  animation: flicker 1.5s infinite;
+}
+
+/* Fade animations for content transition */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Modal enhancements */
+.modal-content {
+  border: 2px solid #00FF41; /* Steins;Gate green */
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #111; /* Darker modal background */
+}
+
+.modal-header {
+  border-bottom: 1px solid #00FF41;
+  padding-bottom: 10px;
+}
+
+.modal-body {
+  padding: 20px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.modal-footer {
+  border-top: 1px solid #00FF41;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-close-white {
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+/* Navbar container */
+.navbar-container {
+  background-color: #000;
+  border-bottom: 2px solid #00FF41;
+  padding: 15px 30px;
+}
+
+.nav-link {
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  font-family: 'Courier New', Courier, monospace;
+  color: #00FF41;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #00FF41;
+}
+
+.active-link {
+  color: #00FF41;
+  border-bottom: 2px solid #00FF41;
+}
+
+.me-3 {
+  margin-right: 20px;
+}
+
+/* Form input styling */
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #00FF41;
+  background-color: #222;
+  color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #00FF41;
+  box-shadow: 0 0 5px #00FF41;
+}
+
+.steins-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background-color: #00FF41;
+  color: #000;
+  font-weight: bold;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Error message */
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+}
+
+/* Flicker effect for loading */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+
+/* Slider Styling */
+.bg-steins-slider {
+  background-color: #444; /* A darker grey to fit with the Steins;Gate theme */
+  transition: background-color 0.3s ease;
+}
+
+.bg-steins-slider:hover {
+  background-color: #00FF41; /* Glowing green on hover */
+}

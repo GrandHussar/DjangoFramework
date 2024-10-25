@@ -1,17 +1,21 @@
 from django.shortcuts import render,redirect
 
+
 # Create your views here.
 from django.http import HttpResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets
-from .models import SimulationReport
-from .serializers import SimulationReportSerializer
+from .models import SimulationResult
+from .serializers import SimulationResultSerializer
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.http import JsonResponse
+
 
 class SimulationReportViewSet(viewsets.ModelViewSet):
-    queryset = SimulationReport.objects.all().order_by('id')
-    serializer_class = SimulationReportSerializer
+    queryset = SimulationResult.objects.all().order_by('id')
+    serializer_class = SimulationResultSerializer
 
 # Define the sample_api view
 @api_view(['GET'])
@@ -45,3 +49,7 @@ def update_simulation(request):
         print(f"Updated Frequency: {frequency} Hz")
         print(f"Updated Amplitude: {amplitude} ms²")
     return redirect('dashboard')
+
+@ensure_csrf_cookie
+def csrf_token_view(request):  # Make sure this name is used consistently
+    return JsonResponse({"message": "CSRF cookie set"})

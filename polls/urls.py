@@ -1,8 +1,8 @@
 from django.urls import path, include
 from . import views
-from .views import sample_api, get_data
+from .views import sample_api, get_data,SimulationReportViewSet,csrf_token_view
 from rest_framework.routers import DefaultRouter
-from .views import SimulationReportViewSet
+
 
 # Initialize the router
 router = DefaultRouter()
@@ -21,4 +21,5 @@ urlpatterns = [
     
     # Include the DRF router-generated URLs
     path('api/', include(router.urls)),  # All API routes from the router (for simulation-reports)
+    path('csrf-token/', csrf_token_view, name='csrf-token'),
 ]

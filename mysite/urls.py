@@ -22,6 +22,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('polls.urls')),  # Root URL now points to polls
     path('api/', include('polls.urls')),
+    path('auth/', include('dj_rest_auth.urls')),  # For login, logout, and password management
+    path('auth/registration/', include('dj_rest_auth.registration.urls')),  # For registration
+    path('api/data/', include('polls.urls')), # Get data API
     
 
 ]

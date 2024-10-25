@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './steinsGateStyle.css'
 import '../styles/output.css'; // Custom CSS for Steins;Gate theme and enhancements
 
 const SimulationControls = ({ frequency, setFrequency, amplitude, setAmplitude, duration, setDuration }) => {
