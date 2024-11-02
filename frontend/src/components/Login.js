@@ -1,6 +1,8 @@
 // src/components/Login.js
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../utils/axiosInstance';  // Use the custom axios instance
+import axios from 'axios';
+
+import { getCookie } from '../utils/csrfHelper';  // Import the helper function
 import { useNavigate } from 'react-router-dom';
 import './steinsGateStyle.css';  // Import Steins;Gate styling
 
@@ -21,25 +23,29 @@ const Login = () => {
       setAuthenticated(true);
       navigate('/dashboard');
     }
-  }, [navigate]);
+  }, [navigate]);  // Run the effect when the component mounts
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const response = await axiosInstance.post('/auth/login/', {
+      const csrftoken = getCookie('csrftoken');
+
+      const response = await axios.post('http://localhost:8000/auth/login/', {
         username,
         password,
+      }, {
+        headers: {
+          'X-CSRFToken': csrftoken,
+        },
+        withCredentials: true,
       });
 
-      // Store the token in localStorage
-      localStorage.setItem('token', response.data.key);
-
-      // Mark the user as authenticated and redirect to the dashboard
+      localStorage.setItem('token', response.data.key);  // Save the token in localStorage
       setAuthenticated(true);
       setError('');
-      navigate('/dashboard');
+      navigate('/dashboard');  // Redirect to the dashboard
     } catch (err) {
       setError('Invalid username/email or password.');
     } finally {

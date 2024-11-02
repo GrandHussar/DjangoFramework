@@ -12,7 +12,11 @@ urlpatterns = [
     # Register the router URLs separately
     path('', views.index, name='index'),  # Index page
     path('welcome/', views.welcome, name='welcome'),  # Welcome page
+    path('login/', views.welcome, name='login'),  # Welcome page
     path('dashboard/', views.dashboard, name='dashboard'),  # Dashboard page
+    path('settings/', views.settings, name='settings'),  # Dashboard page
+    path('reports/', views.reports, name='reports'),  # Dashboard page
+
     path('update_simulation/', views.update_simulation, name='update_simulation'),  # Update simulation page
     
     # API endpoints

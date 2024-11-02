@@ -8,73 +8,12 @@
 }
 
 /* Button hover effects */
-.btn-hover-green:hover, .steins-btn:hover {
+.btn-hover-green:hover {
   box-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41;
-  transform: scale(1.05); /* Small hover effect */
 }
 
 .btn-hover-blue:hover {
   box-shadow: 0 0 10px #007BFF, 0 0 20px #007BFF;
-  transform: scale(1.05);
-}
-
-/* Consistent Button Styles */
-button {
-  transition: all 0.3s ease;
-  border-radius: 6px;
-  padding: 10px 15px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-}
-
-button:focus {
-  outline: none;
-  box-shadow: 0 0 5px #00FF41; /* Green glow focus */
-}
-
-.btn-steins-green {
-  background-color: #32CD32; /* Bright green */
-  color: white;
-  border: 2px solid #2E8B57;
-  transition: background-color 0.3s ease;
-}
-
-.btn-steins-blue {
-  background-color: #008CFF; /* Bright blue */
-  color: white;
-  border: 2px solid #007BFF;
-  transition: background-color 0.3s ease;
-}
-
-.btn-steins-green:hover, .btn-steins-blue:hover {
-  box-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41; /* Glow effect */
-}
-
-/* Adjust View Data Points & Download XML Button */
-.table-btn {
-  padding: 8px 12px;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.table-btn-blue {
-  background-color: #0056b3; /* Dark blue */
-  color: white;
-}
-
-.table-btn-blue:hover {
-  background-color: #007bff;
-  transform: scale(1.05); /* Slight scale on hover */
-}
-
-.table-btn-green {
-  background-color: #006400; /* Dark green */
-  color: white;
-}
-
-.table-btn-green:hover {
-  background-color: #32CD32;
-  transform: scale(1.05);
 }
 
 /* Loading screen styling */
@@ -100,109 +39,159 @@ button:focus {
 
 /* Fade animations for content transition */
 .fade-in {
+  opacity: 0;
   animation: fadeIn 0.6s ease-in-out forwards;
 }
 
 .fade-out {
+  opacity: 1;
   animation: fadeOut 0.6s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
 }
 
-/* Modal enhancements */
+/* Modal border */
 .modal-content {
   border: 2px solid #00FF41; /* Steins;Gate green */
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #111; /* Darker modal background */
 }
 
-.modal-header {
-  border-bottom: 1px solid #00FF41;
-  padding-bottom: 10px;
+/* Flickering effect for loading */
+@keyframes flicker {
+  0%, 100% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0.5;
+  }
 }
 
-.modal-body {
-  padding: 20px;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.modal-footer {
-  border-top: 1px solid #00FF41;
-  padding-top: 10px;
+/* Login container styling */
+.login-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000; /* Dark background like Steins;Gate theme */
 }
 
-.btn-close-white {
-  background-color: #fff;
-  border-radius: 50%;
+.steins-bg {
+  background: url('./assets/steins_gate_bg.jpg') no-repeat center center;
+  background-size: cover;
 }
 
-/* Navbar container */
-.navbar-container {
-  background-color: #000;
-  border-bottom: 2px solid #00FF41;
-  padding: 15px 30px;
+.steins-box {
+  background-color: rgba(0, 0, 0, 0.8); /* Transparent black box */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);  /* Green glow */
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
-.nav-link {
-  padding: 10px 15px;
-  font-size: 1.2rem;
-  font-family: 'Courier New', Courier, monospace;
-  color: #00FF41;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #00FF41;
-}
-
-.active-link {
-  color: #00FF41;
-  border-bottom: 2px solid #00FF41;
-}
-
-.me-3 {
-  margin-right: 20px;
-}
-
-/* Form input styling */
 .form-control {
   width: 100%;
   padding: 0.75rem;
   border-radius: 4px;
-  border: 1px solid #00FF41;
-  background-color: #222;
-  color: #fff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-control:focus {
-  border-color: #00FF41;
-  box-shadow: 0 0 5px #00FF41;
+  border: 1px solid #00FF41; /* Green border */
+  background-color: #222; /* Dark input background */
+  color: #fff;  /* White text */
 }
 
 .steins-btn {
   width: 100%;
   padding: 0.75rem;
   border: none;
-  background-color: #00FF41;
+  background-color: #00FF41; /* Green button */
   color: #000;
   font-weight: bold;
+  cursor: pointer;
   border-radius: 4px;
-  font-family: 'Courier New', Courier, monospace;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Courier New', Courier, monospace;  /* Futuristic font */
 }
+
+.steins-btn:hover {
+  background-color: #007bff; /* Blue on hover */
+  box-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41; /* Glowing effect */
+}
+
+.error-message {
+  color: #ff0000; /* Red error messages */
+  margin-top: 10px;
+}
+
+/* Loading Text Animation */
+.loading-text {
+  font-size: 2rem;
+  color: #00FF41;
+  font-family: 'Courier New', Courier, monospace;
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Navbar container */
+/* Navbar container */
+.navbar-container {
+  background-color: #000;  /* Dark background */
+  border-bottom: 2px solid #00FF41;  /* Steins;Gate green border */
+  padding: 10px 20px;
+}
+
+/* Nav link styles */
+.nav-link {
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  font-family: 'Courier New', Courier, monospace;  /* Steins;Gate font style */
+  transition: color 0.3s ease;
+  text-decoration: none;
+  color: #00FF41;  /* Steins;Gate green */
+}
+
+.nav-link:hover {
+  color: #00FF41;  /* Hover effect with Steins;Gate green */
+}
+
+/* Active link styling */
+.active-link {
+  color: #00FF41;
+  border-bottom: 2px solid #00FF41;
+  background-color: rgba(0, 255, 65, 0.1);  /* Slight green highlight for active */
+}
+
+/* Adjust for spacing between links */
+.me-3 {
+  margin-right: 20px;
+}
+
+.btn-steins-blue {
+  background-color: #008CFF; /* A bright blue */
+  color: white; /* White text */
+  border: 2px solid #007BFF; /* Bright border */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+
 
 /* Error message */
 .error-message {

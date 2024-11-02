@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User  # Using Django's default User model (auth_user)
 
+
 # Simulation Model
 class Simulation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Foreign key to auth_user table
@@ -47,7 +48,7 @@ class Control(models.Model):
 
 # Sensor Model
 class Sensor(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Foreign key to auth_user table
+    simulation = models.ForeignKey(Simulation, on_delete=models.CASCADE)  # Foreign key to Simulation table
     data_points = models.JSONField()  # JSON field for sensor data points
     frequency = models.FloatField()  # Frequency recorded by the sensor
     intensity = models.FloatField()  # Intensity recorded by the sensor
@@ -56,4 +57,4 @@ class Sensor(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # Timestamp for creation
 
     def __str__(self):
-        return f"Sensor {self.id} - User {self.user.id} - Vibration Level {self.vibration_level}"
+        return f"Sensor {self.id} - Simulation {self.simulation.id} - Vibration Level {self.vibration_level}"

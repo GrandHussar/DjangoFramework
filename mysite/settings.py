@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,20 +11,18 @@ SECRET_KEY = 'django-insecure-uofg(kbf0&0#5iv$%=s%q9q!ni6*!!dw7wp-3#ao+6$-002wre
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SECURE = False  # Set to False for local development (can be True in production with HTTPS)
+ALLOWED_HOSTS = ['*.ngrok-free.app', 'localhost', '127.0.0.1']
 
+# Cookie and CORS settings
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SECURE = False  # Same as CSRF_COOKIE_SECURE
+CSRF_COOKIE_SAMESITE = 'None'
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True 
 # CORS Settings
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # React frontend URL
-]
-CORS_ALLOW_ALL_ORIGINS = True
-# CSRF Trusted Origins
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -46,7 +45,7 @@ INSTALLED_APPS = [
 ]
 
 # DJ Rest Auth settings
-ACCOUNT_EMAIL_VERIFICATION = 'none'  # Can be 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Set to 'mandatory' if needed
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -67,7 +66,7 @@ REST_FRAMEWORK = {
 # Middleware settings
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # CORS middleware first
+    'corsheaders.middleware.CorsMiddleware',  # CORS middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',  # CSRF middleware
@@ -126,6 +125,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # Default backend
     'polls.backends.UsernameOrEmailBackend',  # Custom backend for username or email login
 ]
+
 # Internationalization settings
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -140,3 +140,27 @@ STATICFILES_DIRS = [
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend/build/static'),  # Path to React's static files
+]
+
+# Templates directory for React's index.html
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'frontend/build')  # Path to React's index.html
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
