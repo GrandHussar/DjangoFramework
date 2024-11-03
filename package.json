@@ -11,5 +11,14 @@
   },
   "dependencies": {
     "axios": "^1.7.7"
+  },
+  "jscpd": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/env/**",
+      "**/storage/**",
+      "**/bootstrap/**",
+      "**/frontend/node_modules/**"
+    ]
   }
 }

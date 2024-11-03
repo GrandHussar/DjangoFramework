@@ -11,18 +11,28 @@ SECRET_KEY = 'django-insecure-uofg(kbf0&0#5iv$%=s%q9q!ni6*!!dw7wp-3#ao+6$-002wre
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*.ngrok-free.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Cookie and CORS settings
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SAMESITE = 'None'
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True 
-# CORS Settings
-CORS_ALLOW_CREDENTIALS = True
 
+# CORS Configuration
+CORS_ALLOWED_ORIGINS = [
+    'https://f62dcc88d54d.ngrok.app',  # Ngrok URL for accessing the frontend
+    'http://localhost:8000',           # Local Django server (for development)
+    'http://localhost:3000',           # Local frontend server (React)
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'https://f62dcc88d54d.ngrok.app',  # Trust the Ngrok URL for CSRF
+]
+
+CORS_ALLOW_CREDENTIALS = True  # Allows cookies to be sent
+CORS_ALLOW_HEADERS = ['*']  # Allows all headers for CORS
 
 # Application definition
 INSTALLED_APPS = [
@@ -65,8 +75,8 @@ REST_FRAMEWORK = {
 
 # Middleware settings
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # CORS middleware must be at the top
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # CORS middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',  # CSRF middleware
@@ -82,7 +92,9 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'frontend/build')  # Path to React's index.html
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,34 +145,11 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files settings
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'polls/static',
+    os.path.join(BASE_DIR, 'polls/static'),  # Custom static files for polls app
+    os.path.join(BASE_DIR, 'frontend/build/static'),  # Path to React's static files
 ]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/build/static'),  # Path to React's static files
-]
-
-# Templates directory for React's index.html
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'frontend/build')  # Path to React's index.html
-        ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]

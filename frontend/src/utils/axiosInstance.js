@@ -2,8 +2,11 @@
 import axios from 'axios';
 import { getCookie } from './csrfHelper';  // Helper to get CSRF token from cookies
 
+// Dynamically set the baseURL based on whether you're using Ngrok or running locally
+const isNgrok = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000',  // Your Django backend URL
+  baseURL: isNgrok ? window.location.origin : 'http://localhost:8000',  // Use Ngrok URL or localhost
   withCredentials: true,  // Send cookies with each request
 });
 

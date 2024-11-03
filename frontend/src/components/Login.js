@@ -1,7 +1,6 @@
 // src/components/Login.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import axiosInstance from '../utils/axiosInstance'; // Import the custom Axios instance
 import { getCookie } from '../utils/csrfHelper';  // Import the helper function
 import { useNavigate } from 'react-router-dom';
 import './steinsGateStyle.css';  // Import Steins;Gate styling
@@ -32,14 +31,13 @@ const Login = () => {
     try {
       const csrftoken = getCookie('csrftoken');
 
-      const response = await axios.post('http://localhost:8000/auth/login/', {
+      const response = await axiosInstance.post('/auth/login/', {  // Use the custom Axios instance
         username,
         password,
       }, {
         headers: {
-          'X-CSRFToken': csrftoken,
+          'X-CSRFToken': csrftoken,  // CSRF token header
         },
-        withCredentials: true,
       });
 
       localStorage.setItem('token', response.data.key);  // Save the token in localStorage
